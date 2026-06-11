@@ -4,6 +4,7 @@ import ScrollProgress from "@/components/pawclean/ScrollProgress";
 import SmoothScroll from "@/components/pawclean/SmoothScroll";
 import Hero from "@/components/pawclean/Hero";
 import HowItWorks from "@/components/pawclean/HowItWorks";
+import InsideLook from "@/components/pawclean/InsideLook";
 import ProductSelector from "@/components/pawclean/ProductSelector";
 import BeforeAfter from "@/components/pawclean/BeforeAfter";
 import Features from "@/components/pawclean/Features";
@@ -27,6 +28,7 @@ export default function PawClean() {
       <SmoothScroll />
       <Hero />
       <HowItWorks />
+      <InsideLook />
       <ProductSelector />
       <BeforeAfter />
       <Features />
