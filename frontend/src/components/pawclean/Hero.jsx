@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { COLORS } from "@/lib/pawclean-data";
 import HeroCarousel from "@/components/pawclean/HeroCarousel";
 import MagneticButton from "@/components/pawclean/MagneticButton";
@@ -23,6 +23,21 @@ export default function Hero() {
   const textY = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const cupY = useTransform(scrollYProgress, [0, 1], [0, -140]);
 
+  // responsive carousel sizing (cup size + orbit radius)
+  const [layout, setLayout] = useState({ size: 680, radius: 460 });
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth;
+      if (w < 480) setLayout({ size: 280, radius: 160 });
+      else if (w < 768) setLayout({ size: 380, radius: 230 });
+      else if (w < 1100) setLayout({ size: 520, radius: 340 });
+      else setLayout({ size: 680, radius: 460 });
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
   return (
     <section
       ref={ref}
@@ -34,7 +49,7 @@ export default function Hero() {
 
       {/* Top nav */}
       <header className="absolute top-0 inset-x-0 z-30">
-        <div className="max-w-7xl mx-auto px-6 md:px-10 py-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 md:px-10 py-4 sm:py-6 flex items-center justify-between">
           <a
             href="#hero"
             data-testid="brand-logo"
@@ -62,7 +77,7 @@ export default function Hero() {
           <a
             href="#product"
             data-testid="nav-cta"
-            className="hidden md:inline-flex items-center gap-2 text-sm text-forest border-b border-forest/30 pb-0.5 hover:border-forest transition-colors"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm text-forest border-b border-forest/30 pb-0.5 hover:border-forest transition-colors"
           >
             Acheter
             <span className="inline-block translate-y-[1px]">→</span>
@@ -73,12 +88,12 @@ export default function Hero() {
       {/* TOP — Circular 3D-style carousel (drag horizontally to rotate) */}
       <motion.div
         style={{ y: cupY }}
-        className="relative z-10 pt-20 md:pt-24"
+        className="relative z-10 pt-16 sm:pt-20 md:pt-24"
       >
         <HeroCarousel
           items={[COLORS[0], COLORS[1], COLORS[2]]}
-          radius={460}
-          productSize={680}
+          radius={layout.radius}
+          productSize={layout.size}
           className="mx-auto max-w-6xl"
         />
       </motion.div>
