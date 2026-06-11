@@ -15,6 +15,7 @@ export const SIZES = [
     weight: "jusqu'à 8 kg",
     dogScale: 0.6,
     icon: "/icons/s.png",
+    dimensions: { width: "8,5 cm", height: "11 cm", opening: "7 cm" },
   },
   {
     id: "M",
@@ -24,6 +25,7 @@ export const SIZES = [
     weight: "de 8 à 25 kg",
     dogScale: 0.82,
     icon: "/icons/m.png",
+    dimensions: { width: "8,5 cm", height: "13,5 cm", opening: "7 cm" },
   },
   {
     id: "L",
@@ -33,6 +35,7 @@ export const SIZES = [
     weight: "à partir de 25 kg",
     dogScale: 1.0,
     icon: "/icons/l.png",
+    dimensions: { width: "8,5 cm", height: "15 cm", opening: "7 cm" },
   },
 ];
 
