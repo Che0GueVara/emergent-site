@@ -1,0 +1,136 @@
+{
+  "theme": "light",
+  "archetype": "1 (Organic & Earthy)",
+  "vibe": "Clinical precision with warm organic soul. Apple meets Aesop meets outdoor gear brand.",
+  "colors": {
+    "background": "#F7F5F0",
+    "surface": "#FFFFFF",
+    "primary": "#1E3A2F",
+    "accent": "#C9644B",
+    "secondary": "#A1B29E",
+    "tertiary": "#A5B8C7",
+    "text_main": "#1A221C",
+    "text_muted": "#5C6A61",
+    "border": "#E5E0D8",
+    "success": "#2A4B3C",
+    "warning": "#D47055",
+    "error": "#B03A2E",
+    "kraft": "#D2B48C"
+  },
+  "typography": {
+    "font_heading": "'Playfair Display', serif",
+    "font_body": "'DM Sans', sans-serif",
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl md:text-7xl font-heading tracking-tight leading-none text-text_main",
+      "h2": "text-3xl sm:text-4xl md:text-5xl font-heading tracking-tight text-text_main",
+      "h3": "text-2xl sm:text-3xl font-heading tracking-tight text-text_main",
+      "h4": "text-xl font-heading tracking-tight text-text_main",
+      "body": "text-base md:text-lg font-body leading-relaxed text-text_main",
+      "body_sm": "text-sm font-body leading-relaxed text-text_muted",
+      "overline": "text-xs font-body tracking-[0.2em] uppercase text-text_muted"
+    }
+  },
+  "spacing_and_layout": {
+    "container": "max-w-7xl mx-auto px-6 md:px-12 lg:px-24",
+    "section_padding": "py-24 md:py-32",
+    "grid_bento": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
+    "border_radius": {
+      "sm": "rounded-sm",
+      "md": "rounded-md",
+      "lg": "rounded-xl",
+      "xl": "rounded-3xl",
+      "full": "rounded-full"
+    }
+  },
+  "animations": {
+    "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+    "magnetic_button": "framer-motion useMotionValue, useSpring for x,y tracking on hover",
+    "clip_path_wipe": "clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' from 'polygon(0 0, 100% 0, 100% 0, 0 0)'",
+    "parallax": "framer-motion useScroll and useTransform for y displacement",
+    "stagger_children": "transition: { staggerChildren: 0.1 }",
+    "scroll_progress": "fixed top-0 left-0 right-0 h-1 bg-accent transform origin-left"
+  },
+  "components": {
+    "global": {
+      "custom_cursor": "framer-motion ring (w-8 h-8 border border-primary) and dot (w-2 h-2 bg-accent), fixed pointer-events-none z-[100]",
+      "grain_overlay": "fixed inset-0 pointer-events-none z-[50] opacity-[0.03] mix-blend-multiply bg-[url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Dissolve_Noise_Texture.png')]"
+    },
+    "hero": {
+      "layout": "h-screen flex flex-col items-center justify-center relative overflow-hidden",
+      "headline": "split across two lines, massive Playfair Display, text-center, z-10",
+      "carousel": "absolute inset-0 flex items-center justify-center -z-10",
+      "products": "3 floating items (Sage, Sky, Terracotta) using framer-motion animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }} with soft colored bloom drop-shadows",
+      "cta": "Magnetic button, primary color bg, text-white, rounded-full px-8 py-4 mt-8",
+      "ticker": "absolute bottom-0 w-full bg-primary text-surface py-3 uppercase tracking-widest text-sm whitespace-nowrap overflow-hidden"
+    },
+    "how_it_works": {
+      "layout": "grid grid-cols-1 md:grid-cols-3 gap-12",
+      "card": "flex flex-col items-center text-center",
+      "reveal": "clip-path wipe from top to bottom on scroll"
+    },
+    "product_selector": {
+      "layout": "grid grid-cols-1 lg:grid-cols-2 gap-16 sticky-container",
+      "gallery": "sticky top-24 h-fit",
+      "size_tag": "flex flex-col items-center justify-center w-24 h-32 border border-border cursor-pointer transition-all relative overflow-hidden bg-surface",
+      "size_tag_active": "border-primary rotate-[-2deg] bg-kraft bg-opacity-20 shadow-md",
+      "dog_icon": "lucide-react dog silhouette, scales based on S (1x), M (1.2x), L (1.5x)",
+      "color_swatch": "w-10 h-10 rounded-full cursor-pointer ring-2 ring-offset-2 transition-all",
+      "dynamic_price": "Updates based on size: S=18€, M=21€, L=23€"
+    },
+    "before_after": {
+      "layout": "relative flex flex-col md:flex-row w-full aspect-video md:aspect-[21/9] rounded-3xl overflow-hidden",
+      "badge": "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-accent text-white font-bold w-16 h-16 rounded-full flex items-center justify-center z-10 border-4 border-surface shadow-xl"
+    },
+    "features": {
+      "layout": "grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto",
+      "card": "p-8 rounded-2xl bg-surface border border-border shadow-[0_8px_32px_rgba(30,58,47,0.04)] hover:shadow-[0_16px_48px_rgba(30,58,47,0.08)] transition-shadow"
+    },
+    "reviews": {
+      "layout": "columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6",
+      "card": "break-inside-avoid p-6 rounded-2xl bg-surface border border-border",
+      "animation": "waterfall cascade stagger on enter viewport"
+    },
+    "delivery": {
+      "layout": "bg-primary text-surface py-24 rounded-3xl my-24 mx-4 md:mx-12",
+      "grid": "grid grid-cols-1 md:grid-cols-3 gap-12 text-center",
+      "stat_number": "text-5xl md:text-6xl font-heading text-accent mb-4",
+      "animation": "framer-motion animate from 0 to value on view"
+    },
+    "faq": {
+      "layout": "max-w-3xl mx-auto",
+      "component": "shadcn accordion customized with warm borders and plus/minus icons"
+    }
+  },
+  "media": {
+    "images": {
+      "hero_product_green": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=600&auto=format&fit=crop",
+      "hero_product_blue": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=600&auto=format&fit=crop",
+      "hero_product_terracotta": "https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=600&auto=format&fit=crop",
+      "before_muddy_paws": "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=800&auto=format&fit=crop",
+      "after_clean_paws": "https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=800&auto=format&fit=crop",
+      "lifestyle_walking": "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=1200&auto=format&fit=crop",
+      "reviews": [
+        "https://images.pexels.com/photos/7562179/pexels-photo-7562179.jpeg?q=80&w=400&auto=format&fit=crop",
+        "https://images.pexels.com/photos/37159572/pexels-photo-37159572.jpeg?q=80&w=400&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+      ]
+    }
+  },
+  "instructions_to_main_agent": [
+    "Install Framer Motion: `npm install framer-motion` or `yarn add framer-motion`",
+    "Install React Fast Marquee: `npm install react-fast-marquee` or `yarn add react-fast-marquee`",
+    "Install Lucide React if not present.",
+    "Add Playfair Display and DM Sans to index.html or global css via Google Fonts.",
+    "Configure tailwind.config.js with the colors provided: primary (#1E3A2F), accent (#C9644B), secondary (#A1B29E), text_main (#1A221C), background (#F7F5F0), kraft (#D2B48C).",
+    "Extend tailwind theme for font families: font-heading (Playfair Display) and font-body (DM Sans).",
+    "Build the Hero Section first with a 3D-like floating layout. Use Framer Motion to float the three product images independently. Parallax the headline text.",
+    "For the size selector, use the kraft paper style with a slight rotation to mimic a physical tag.",
+    "Use standard semantic HTML, avoid massive custom components where Shadcn will suffice (e.g., FAQ Accordion).",
+    "Ensure all interactive elements have data-testid attributes (e.g., data-testid='cta-buy-hero', data-testid='size-selector-m').",
+    "The 'Acheter' CTA should be an <a> tag linking to '#' for now as a Stripe placeholder.",
+    "Include a global grain texture div with mix-blend-multiply overlaying everything."
+  ]
+}
