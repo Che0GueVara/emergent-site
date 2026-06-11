@@ -46,11 +46,11 @@ export default function Hero() {
             <a href="#how" className="hover:text-forest transition-colors">
               Le rituel
             </a>
-            <a href="#inside" className="hover:text-forest transition-colors">
-              Vu de près
-            </a>
             <a href="#product" className="hover:text-forest transition-colors">
               Le produit
+            </a>
+            <a href="#inside" className="hover:text-forest transition-colors">
+              Vu de près
             </a>
             <a href="#reviews" className="hover:text-forest transition-colors">
               Avis

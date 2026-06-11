@@ -28,8 +28,8 @@ export default function PawClean() {
       <SmoothScroll />
       <Hero />
       <HowItWorks />
-      <InsideLook />
       <ProductSelector />
+      <InsideLook />
       <BeforeAfter />
       <Features />
       <Reviews />
