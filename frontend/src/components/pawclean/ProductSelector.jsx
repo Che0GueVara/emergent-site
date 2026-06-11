@@ -4,22 +4,26 @@ import { SIZES, COLORS, STRIPE_LINKS } from "@/lib/pawclean-data";
 import ProductPhoto from "@/components/pawclean/ProductPhoto";
 import MagneticButton from "@/components/pawclean/MagneticButton";
 
-/** Dog silhouette — single path, scales between sizes */
-function DogSilhouette({ scale = 1, color = "#1A221C" }) {
+/** Dog silhouette — uses user-provided per-size PNG icons */
+function DogSilhouette({ src, scale = 1, active = false }) {
   return (
-    <svg
-      viewBox="0 0 120 70"
-      style={{ transform: `scale(${scale})`, transformOrigin: "center bottom" }}
-      width="56"
-      height="40"
-      aria-hidden
+    <div
+      className="flex items-end justify-center"
+      style={{ height: 58, width: 64 }}
     >
-      <path
-        fill={color}
-        d="M9 48c0-9 6-15 14-16 3-4 8-7 14-7 5 0 9 2 11 5 3-2 7-3 11-3 5 0 9 2 12 6 0-4 2-7 5-9 1 4 2 9 1 14 5 2 8 7 8 13 0 9-7 15-16 15h-3l-3 7H56l-3-7H30l-3 7H17l-2-7c-4 0-6-3-6-7z"
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        className="block object-contain transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+        style={{
+          maxHeight: `${scale * 100}%`,
+          maxWidth: "100%",
+          opacity: active ? 1 : 0.55,
+          filter: active ? "none" : "saturate(0)",
+        }}
       />
-      <circle cx="84" cy="40" r="2.4" fill="#F7F5F0" />
-    </svg>
+    </div>
   );
 }
 
@@ -160,8 +164,9 @@ export default function ProductSelector() {
                       />
                       <div className="flex-1 flex items-end justify-center mb-1">
                         <DogSilhouette
+                          src={s.icon}
                           scale={s.dogScale}
-                          color={active ? "#1A221C" : "#5C6A61"}
+                          active={active}
                         />
                       </div>
                       <div className="flex items-baseline gap-1">

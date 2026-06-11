@@ -13,7 +13,8 @@ export const SIZES = [
     price: 18,
     breed: "Chihuahua, Yorkshire, Bichon",
     weight: "jusqu'à 8 kg",
-    dogScale: 0.62,
+    dogScale: 0.6,
+    icon: "/icons/s.png",
   },
   {
     id: "M",
@@ -21,7 +22,8 @@ export const SIZES = [
     price: 21,
     breed: "Cocker, Border Collie, Bouledogue",
     weight: "de 8 à 25 kg",
-    dogScale: 0.85,
+    dogScale: 0.82,
+    icon: "/icons/m.png",
   },
   {
     id: "L",
@@ -29,7 +31,8 @@ export const SIZES = [
     price: 23,
     breed: "Labrador, Berger, Dogue Allemand",
     weight: "à partir de 25 kg",
-    dogScale: 1.15,
+    dogScale: 1.0,
+    icon: "/icons/l.png",
   },
 ];
 
