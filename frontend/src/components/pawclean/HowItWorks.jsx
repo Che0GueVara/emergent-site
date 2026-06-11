@@ -2,13 +2,13 @@ import { motion } from "framer-motion";
 import { STEPS } from "@/lib/pawclean-data";
 
 const reveal = {
-  hidden: { clipPath: "inset(0 0 100% 0)", opacity: 0 },
+  hidden: { opacity: 0, y: 30 },
   visible: (i) => ({
-    clipPath: "inset(0 0 0% 0)",
     opacity: 1,
+    y: 0,
     transition: {
-      duration: 0.9,
-      delay: i * 0.15,
+      duration: 0.8,
+      delay: i * 0.12,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -19,10 +19,10 @@ export default function HowItWorks() {
     <section
       id="how"
       data-testid="section-how"
-      className="relative py-16 md:py-24 bg-linen"
+      className="relative pt-16 md:pt-24 pb-6 md:pb-8 bg-linen"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="max-w-2xl mb-20">
+        <div className="max-w-2xl mb-10 md:mb-14">
           <p className="text-xs tracking-[0.3em] uppercase text-mute mb-6">
             Le rituel
           </p>
@@ -33,7 +33,7 @@ export default function HowItWorks() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10">
           {STEPS.map((s, i) => (
             <motion.div
               key={s.n}
@@ -41,7 +41,7 @@ export default function HowItWorks() {
               variants={reveal}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, amount: 0.4 }}
+              viewport={{ once: true, amount: 0.1 }}
               data-testid={`step-card-${i}`}
               className="relative"
             >

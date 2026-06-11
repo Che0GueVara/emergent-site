@@ -76,29 +76,29 @@ export default function Hero() {
         <div className="relative flex items-end justify-center gap-2 md:gap-6 lg:gap-10 w-full max-w-6xl px-4">
           {/* Sky */}
           <motion.div
-            animate={{ y: [0, -18, 0], rotate: [-3, -1, -3] }}
+            animate={{ y: [0, -22, 0], rotate: [-3, -1, -3] }}
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-            className="translate-y-6"
+            className="translate-y-10"
           >
-            <ProductPhoto color={COLORS[1]} size={300} priority />
+            <ProductPhoto color={COLORS[1]} size={520} priority />
           </motion.div>
 
           {/* Sage — hero front */}
           <motion.div
-            animate={{ y: [0, -28, 0], rotate: [1.5, -1.5, 1.5] }}
+            animate={{ y: [0, -34, 0], rotate: [1.5, -1.5, 1.5] }}
             transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-            className="-translate-y-4 z-10"
+            className="-translate-y-6 z-10"
           >
-            <ProductPhoto color={COLORS[0]} size={420} priority />
+            <ProductPhoto color={COLORS[0]} size={720} priority />
           </motion.div>
 
           {/* Terracotta */}
           <motion.div
-            animate={{ y: [0, -20, 0], rotate: [2.5, 5, 2.5] }}
+            animate={{ y: [0, -24, 0], rotate: [2.5, 5, 2.5] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="translate-y-6"
+            className="translate-y-10"
           >
-            <ProductPhoto color={COLORS[2]} size={300} priority />
+            <ProductPhoto color={COLORS[2]} size={520} priority />
           </motion.div>
         </div>
       </motion.div>
