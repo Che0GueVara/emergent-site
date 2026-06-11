@@ -14,7 +14,6 @@ import Delivery from "@/components/pawclean/Delivery";
 import FAQSection from "@/components/pawclean/FAQSection";
 import Footer from "@/components/pawclean/Footer";
 import MobileBuyBar from "@/components/pawclean/MobileBuyBar";
-import ExitIntent from "@/components/pawclean/ExitIntent";
 
 export default function PawClean() {
   useEffect(() => {
@@ -41,7 +40,6 @@ export default function PawClean() {
       <FAQSection />
       <Footer />
       <MobileBuyBar />
-      <ExitIntent />
     </main>
   );
 }
