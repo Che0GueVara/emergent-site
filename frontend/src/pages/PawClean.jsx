@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import CustomCursor from "@/components/pawclean/CustomCursor";
 import ScrollProgress from "@/components/pawclean/ScrollProgress";
+import SmoothScroll from "@/components/pawclean/SmoothScroll";
 import Hero from "@/components/pawclean/Hero";
 import HowItWorks from "@/components/pawclean/HowItWorks";
 import ProductSelector from "@/components/pawclean/ProductSelector";
@@ -23,6 +24,7 @@ export default function PawClean() {
     >
       <CustomCursor />
       <ScrollProgress />
+      <SmoothScroll />
       <Hero />
       <HowItWorks />
       <ProductSelector />

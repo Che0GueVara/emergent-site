@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { COLORS } from "@/lib/pawclean-data";
 import ProductPhoto from "@/components/pawclean/ProductPhoto";
 import MagneticButton from "@/components/pawclean/MagneticButton";
@@ -16,6 +16,8 @@ const tickerItems = [
 
 export default function Hero() {
   const ref = useRef(null);
+  const carouselRef = useRef(null);
+  const [isDragging, setIsDragging] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -67,40 +69,77 @@ export default function Hero() {
         </div>
       </header>
 
-      {/* TOP — Floating products carousel */}
+      {/* TOP — Floating products carousel (draggable horizontally) */}
       <motion.div
         style={{ y: cupY }}
-        className="relative z-10 pt-24 md:pt-28 flex items-end justify-center"
-        aria-hidden
+        className="relative z-10 pt-24 md:pt-28 flex items-end justify-center select-none"
+        ref={carouselRef}
       >
-        <div className="relative flex items-end justify-center gap-2 md:gap-6 lg:gap-10 w-full max-w-6xl px-4">
+        <motion.div
+          drag="x"
+          dragConstraints={{ left: -180, right: 180 }}
+          dragElastic={0.18}
+          dragMomentum={true}
+          onDragStart={() => setIsDragging(true)}
+          onDragEnd={() => setIsDragging(false)}
+          whileDrag={{ cursor: "grabbing" }}
+          className="relative flex items-end justify-center gap-2 md:gap-6 lg:gap-10 w-full max-w-6xl px-4 cursor-grab touch-pan-y"
+          data-testid="hero-carousel"
+        >
           {/* Sky */}
           <motion.div
-            animate={{ y: [0, -22, 0], rotate: [-3, -1, -3] }}
+            animate={
+              isDragging
+                ? { y: 0, rotate: 0 }
+                : { y: [0, -22, 0], rotate: [-3, -1, -3] }
+            }
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
             className="translate-y-10"
           >
-            <ProductPhoto color={COLORS[1]} size={520} priority />
+            <ProductPhoto
+              color={COLORS[1]}
+              size={520}
+              priority
+              dragging={isDragging}
+            />
           </motion.div>
 
           {/* Sage — hero front */}
           <motion.div
-            animate={{ y: [0, -34, 0], rotate: [1.5, -1.5, 1.5] }}
+            animate={
+              isDragging
+                ? { y: 0, rotate: 0 }
+                : { y: [0, -34, 0], rotate: [1.5, -1.5, 1.5] }
+            }
             transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
             className="-translate-y-6 z-10"
           >
-            <ProductPhoto color={COLORS[0]} size={720} priority />
+            <ProductPhoto
+              color={COLORS[0]}
+              size={720}
+              priority
+              dragging={isDragging}
+            />
           </motion.div>
 
           {/* Terracotta */}
           <motion.div
-            animate={{ y: [0, -24, 0], rotate: [2.5, 5, 2.5] }}
+            animate={
+              isDragging
+                ? { y: 0, rotate: 0 }
+                : { y: [0, -24, 0], rotate: [2.5, 5, 2.5] }
+            }
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             className="translate-y-10"
           >
-            <ProductPhoto color={COLORS[2]} size={520} priority />
+            <ProductPhoto
+              color={COLORS[2]}
+              size={520}
+              priority
+              dragging={isDragging}
+            />
           </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* BOTTOM — Editorial headline + CTA */}
