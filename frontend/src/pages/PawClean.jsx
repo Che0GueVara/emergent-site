@@ -16,7 +16,7 @@ import FAQSection from "@/components/pawclean/FAQSection";
 import Footer from "@/components/pawclean/Footer";
 import MobileBuyBar from "@/components/pawclean/MobileBuyBar";
 
-export default function PawClean() {
+export default function PawClean({ showAnnouncement = true }) {
   const { lang } = useLang();
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export default function PawClean() {
       <CustomCursor />
       <ScrollProgress />
       <SmoothScroll />
-      <AnnouncementBar />
+      {showAnnouncement && <AnnouncementBar />}
       <Hero />
       <HowItWorks />
       <ProductSelector />

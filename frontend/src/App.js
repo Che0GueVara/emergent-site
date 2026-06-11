@@ -6,13 +6,12 @@ import PawClean from "@/pages/PawClean";
 function App() {
   return (
     <div className="App">
-      <LangProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<PawClean />} />
-          </Routes>
-        </BrowserRouter>
-      </LangProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LangProvider defaultLang="fr"><PawClean /></LangProvider>} />
+          <Route path="/en" element={<LangProvider defaultLang="en"><PawClean showAnnouncement={false} /></LangProvider>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

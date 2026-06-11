@@ -392,6 +392,7 @@ export const translations = {
         weight: "20 kg and over",
         breed: "Labrador, Shepherd, Great Dane",
         dimensions: { height: "Height", width: "Width", opening: "Opening" },
+        label: "Size L — Large dogs (over 20 kg)",
       },
     ],
     colors: [
@@ -451,8 +452,8 @@ export const translations = {
 import React from "react";
 const LangContext = createContext({ lang: "fr", setLang: () => {}, t: translations.fr });
 
-export function LangProvider({ children }) {
-  const [lang, setLang] = useState("fr");
+export function LangProvider({ children, defaultLang = "fr" }) {
+  const [lang, setLang] = useState(defaultLang);
   const t = translations[lang];
   return (
     <LangContext.Provider value={{ lang, setLang, t }}>
