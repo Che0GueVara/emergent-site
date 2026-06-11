@@ -12,6 +12,7 @@ import Reviews from "@/components/pawclean/Reviews";
 import Delivery from "@/components/pawclean/Delivery";
 import FAQSection from "@/components/pawclean/FAQSection";
 import Footer from "@/components/pawclean/Footer";
+import MobileBuyBar from "@/components/pawclean/MobileBuyBar";
 
 export default function PawClean() {
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function PawClean() {
       <Delivery />
       <FAQSection />
       <Footer />
+      <MobileBuyBar />
     </main>
   );
 }
