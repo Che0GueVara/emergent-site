@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
-const MESSAGES = [
-  { icon: "🚚", text: "Livraison gratuite partout en France métropolitaine" },
-  { icon: "⚡", text: "Expédition sous 48 h depuis Paris" },
-  { icon: "★", text: "Note vérifiée 4,9 / 5 — 4 200 maîtres conquis" },
-  { icon: "↺", text: "30 jours pour changer d'avis — retour offert" },
-];
-
-function nextSunday() {
+function nextSunday(locale) {
   const d = new Date();
   const days = (7 - d.getDay()) % 7 || 7;
   d.setDate(d.getDate() + days);
-  return d.toLocaleDateString("fr-FR", {
+  return d.toLocaleDateString(locale === "en" ? "en-GB" : "fr-FR", {
     weekday: "long",
     day: "numeric",
     month: "long",
@@ -21,6 +15,9 @@ function nextSunday() {
 }
 
 export default function AnnouncementBar() {
+  const { lang, t } = useLang();
+  const MESSAGES = t.announcement.messages;
+
   const [closed, setClosed] = useState(false);
   const [idx, setIdx] = useState(0);
 
@@ -32,7 +29,12 @@ export default function AnnouncementBar() {
     if (closed) return;
     const id = setInterval(() => setIdx((i) => (i + 1) % MESSAGES.length), 4200);
     return () => clearInterval(id);
-  }, [closed]);
+  }, [closed, MESSAGES.length]);
+
+  // Reset index when language changes to avoid out-of-bound
+  useEffect(() => {
+    setIdx(0);
+  }, [lang]);
 
   if (closed) return null;
 
@@ -45,7 +47,7 @@ export default function AnnouncementBar() {
         <div className="flex-1 min-w-0 text-center relative h-5 overflow-hidden">
           <AnimatePresence mode="wait">
             <motion.div
-              key={idx}
+              key={`${lang}-${idx}`}
               initial={{ y: 14, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -14, opacity: 0 }}
@@ -60,7 +62,7 @@ export default function AnnouncementBar() {
           </AnimatePresence>
         </div>
         <span className="hidden sm:inline text-[10px] tracking-[0.25em] uppercase text-linen/60">
-          Jusqu&apos;à {nextSunday()}
+          {t.announcement.until} {nextSunday(lang)}
         </span>
         <button
           type="button"
@@ -68,7 +70,7 @@ export default function AnnouncementBar() {
             sessionStorage.setItem("pc-banner-closed", "1");
             setClosed(true);
           }}
-          aria-label="Fermer le bandeau"
+          aria-label={t.announcement.close}
           data-testid="announcement-close"
           className="ml-1 text-linen/70 hover:text-linen transition-colors"
         >

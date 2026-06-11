@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
-import { FEATURES } from "@/lib/pawclean-data";
+import { useLang } from "@/lib/i18n";
 import { Sparkles, Leaf, Droplets, Plane } from "lucide-react";
 
 const ICONS = [Sparkles, Leaf, Droplets, Plane];
 
 export default function Features() {
+  const { t } = useLang();
+  const featureItems = t.featureItems;
+
   return (
     <section
       id="features"
@@ -14,21 +17,21 @@ export default function Features() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="max-w-2xl mb-16">
           <p className="text-xs tracking-[0.3em] uppercase text-mute mb-6">
-            Conçu pour durer
+            {t.features.overline}
           </p>
           <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight text-moss">
-            Petits détails.
+            {t.features.headline1}
             <br />
-            <em className="text-terracotta">Grande différence.</em>
+            <em className="text-terracotta">{t.features.headline2}</em>
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {FEATURES.map((f, i) => {
+          {featureItems.map((f, i) => {
             const Icon = ICONS[i % ICONS.length];
             return (
               <motion.article
-                key={f.title}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}

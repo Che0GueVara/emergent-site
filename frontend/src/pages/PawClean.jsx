@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLang } from "@/lib/i18n";
 import CustomCursor from "@/components/pawclean/CustomCursor";
 import ScrollProgress from "@/components/pawclean/ScrollProgress";
 import SmoothScroll from "@/components/pawclean/SmoothScroll";
@@ -16,9 +17,15 @@ import Footer from "@/components/pawclean/Footer";
 import MobileBuyBar from "@/components/pawclean/MobileBuyBar";
 
 export default function PawClean() {
+  const { lang } = useLang();
+
   useEffect(() => {
-    document.title = "PawClean — Des pattes propres en 10 secondes";
-  }, []);
+    document.title =
+      lang === "en"
+        ? "PawClean — Clean paws in 10 seconds"
+        : "PawClean — Des pattes propres en 10 secondes";
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   return (
     <main

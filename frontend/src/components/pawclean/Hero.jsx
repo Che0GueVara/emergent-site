@@ -1,20 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { COLORS } from "@/lib/pawclean-data";
+import { useLang } from "@/lib/i18n";
 import HeroCarousel from "@/components/pawclean/HeroCarousel";
 import MagneticButton from "@/components/pawclean/MagneticButton";
+import LanguageSwitcher from "@/components/pawclean/LanguageSwitcher";
 import { ArrowDown } from "lucide-react";
 
-const tickerItems = [
-  "Livraison gratuite en France",
-  "Garantie 30 jours satisfait ou remboursé",
-  "Silicone alimentaire — sans BPA",
-  "+ 4 200 clients satisfaits",
-  "Expédition sous 48 h",
-  "Avis vérifiés ★ 4.9 / 5",
-];
-
 export default function Hero() {
+  const { lang, t } = useLang();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -23,7 +17,6 @@ export default function Hero() {
   const textY = useTransform(scrollYProgress, [0, 1], [0, -60]);
   const cupY = useTransform(scrollYProgress, [0, 1], [0, -140]);
 
-  // responsive carousel sizing (cup size + orbit radius)
   const [layout, setLayout] = useState({ size: 680, radius: 460 });
   useEffect(() => {
     const update = () => {
@@ -37,6 +30,8 @@ export default function Hero() {
     window.addEventListener("resize", update);
     return () => window.removeEventListener("resize", update);
   }, []);
+
+  const tickerItems = t.hero.ticker;
 
   return (
     <section
@@ -59,33 +54,36 @@ export default function Hero() {
           </a>
           <nav className="hidden md:flex items-center gap-10 text-sm text-mute">
             <a href="#how" className="hover:text-forest transition-colors">
-              Le rituel
+              {t.hero.nav.ritual}
             </a>
             <a href="#product" className="hover:text-forest transition-colors">
-              Le produit
+              {t.hero.nav.product}
             </a>
             <a href="#inside" className="hover:text-forest transition-colors">
-              Vu de près
+              {t.hero.nav.inside}
             </a>
             <a href="#reviews" className="hover:text-forest transition-colors">
-              Avis
+              {t.hero.nav.reviews}
             </a>
             <a href="#faq" className="hover:text-forest transition-colors">
-              Questions
+              {t.hero.nav.faq}
             </a>
           </nav>
-          <a
-            href="#product"
-            data-testid="nav-cta"
-            className="inline-flex items-center gap-2 text-xs sm:text-sm text-forest border-b border-forest/30 pb-0.5 hover:border-forest transition-colors"
-          >
-            Acheter
-            <span className="inline-block translate-y-[1px]">→</span>
-          </a>
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher />
+            <a
+              href="#product"
+              data-testid="nav-cta"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm text-forest border-b border-forest/30 pb-0.5 hover:border-forest transition-colors"
+            >
+              {t.hero.nav.buy}
+              <span className="inline-block translate-y-[1px]">→</span>
+            </a>
+          </div>
         </div>
       </header>
 
-      {/* TOP — Circular 3D-style carousel (drag horizontally to rotate) */}
+      {/* Carousel */}
       <motion.div
         style={{ y: cupY }}
         className="relative z-10 pt-16 sm:pt-20 md:pt-24"
@@ -98,50 +96,53 @@ export default function Hero() {
         />
       </motion.div>
 
-      {/* BOTTOM — Editorial headline + CTA */}
+      {/* Headline + CTA */}
       <motion.div
         style={{ y: textY }}
         className="relative z-20 flex-1 flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6 pt-2 pb-20"
       >
         <motion.p
+          key={`overline-${lang}`}
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-mute mb-6"
           data-testid="hero-overline"
         >
-          Pour chiens et chats — fabriqué en silicone alimentaire
+          {t.hero.overline}
         </motion.p>
         <h1
           data-testid="hero-headline"
           className="font-display text-[clamp(2.5rem,7vw,6.25rem)] leading-[0.95] tracking-tight text-moss"
         >
           <motion.span
+            key={`h1-${lang}`}
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="block"
           >
-            Des pattes propres
+            {t.hero.headline1}
           </motion.span>
           <motion.span
+            key={`h2-${lang}`}
             initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="block italic"
           >
-            en <span className="text-terracotta">dix secondes</span>.
+            {t.hero.headline2} <span className="text-terracotta">{t.hero.headline2accent}</span>{t.hero.headline2end}
           </motion.span>
         </h1>
 
         <motion.p
+          key={`body-${lang}`}
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="mt-7 text-base md:text-lg text-mute max-w-xl"
         >
-          La routine de la balade, simplifiée. Un gobelet en silicone, de
-          l&apos;eau tiède, et la boue disparaît.
+          {t.hero.body}
         </motion.p>
 
         <motion.div
@@ -155,7 +156,7 @@ export default function Hero() {
             data-testid="hero-cta"
             className="group inline-flex items-center gap-3 rounded-full bg-forest text-linen px-9 py-4 text-sm tracking-wide hover:bg-moss transition-colors duration-500"
           >
-            Découvrir PawClean
+            {t.hero.cta}
             <span className="inline-block transition-transform duration-500 group-hover:translate-x-1">
               →
             </span>
@@ -166,7 +167,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-mute hover:text-forest transition-colors"
             data-testid="hero-scroll-link"
           >
-            <ArrowDown size={14} /> Voir le rituel
+            <ArrowDown size={14} /> {t.hero.scrollLink}
           </a>
         </motion.div>
       </motion.div>

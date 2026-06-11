@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useLang } from "@/lib/i18n";
 
 const IMG_GROUP =
   "https://customer-assets.emergentagent.com/job_ten-seconds-clean/artifacts/cuxhfhtb_main-image-2.jpeg";
@@ -13,6 +14,9 @@ const fade = {
 };
 
 export default function InsideLook() {
+  const { t } = useLang();
+  const ins = t.inside;
+
   return (
     <section
       id="inside"
@@ -29,15 +33,17 @@ export default function InsideLook() {
           className="max-w-2xl mb-12 md:mb-16"
         >
           <p className="text-xs tracking-[0.3em] uppercase text-mute mb-6">
-            Vu de près
+            {ins.overline}
           </p>
           <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight text-moss">
-            Pensé jusqu&apos;au{" "}
-            <em className="text-terracotta">moindre détail.</em>
+            {ins.headline.split(" ").slice(0, -2).join(" ")}{" "}
+            <em className="text-terracotta">
+              {ins.headline.split(" ").slice(-2).join(" ")}
+            </em>
           </h2>
         </motion.div>
 
-        {/* Row 1 — hero shot with bristle reveal */}
+        {/* Row 1 */}
         <motion.div
           variants={fade}
           initial="hidden"
@@ -48,7 +54,7 @@ export default function InsideLook() {
           <div className="relative rounded-[2rem] overflow-hidden card-bloom bg-white">
             <img
               src={IMG_GROUP}
-              alt="Les trois coloris PawClean — le gobelet bleu basculé révèle la couronne intérieure de picots silicone"
+              alt={ins.row1.imgAlt}
               loading="lazy"
               decoding="async"
               className="w-full h-auto block"
@@ -57,32 +63,28 @@ export default function InsideLook() {
           </div>
           <div className="lg:pl-4">
             <p className="text-xs tracking-[0.3em] uppercase text-mute mb-4">
-              L&apos;intérieur
+              {ins.row1.overline}
             </p>
             <h3 className="font-display text-3xl md:text-4xl leading-tight text-moss mb-5">
-              Une couronne de picots silicone à 360°.
+              {ins.row1.title}
             </h3>
             <p className="text-mute text-base md:text-lg leading-relaxed max-w-md">
-              Souples, fermes, étudiés pour épouser chaque coussinet sans
-              irriter. La rotation douce du gobelet décolle la boue, le sable et
-              les pollens accumulés pendant la balade. Aucune brosse, aucun
-              produit — juste de la friction maîtrisée et un peu d&apos;eau
-              tiède.
+              {ins.row1.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["360° de picots", "Silicone alimentaire", "Sans BPA"].map((t) => (
+              {ins.row1.tags.map((tag) => (
                 <span
-                  key={t}
+                  key={tag}
                   className="text-[10px] tracking-[0.25em] uppercase text-moss bg-white border border-edge rounded-full px-3 py-1.5"
                 >
-                  {t}
+                  {tag}
                 </span>
               ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Row 2 — Disassembled */}
+        {/* Row 2 */}
         <motion.div
           variants={fade}
           initial="hidden"
@@ -92,30 +94,23 @@ export default function InsideLook() {
         >
           <div className="lg:pr-4 lg:order-1 order-2">
             <p className="text-xs tracking-[0.3em] uppercase text-mute mb-4">
-              Démontable
+              {ins.row2.overline}
             </p>
             <h3 className="font-display text-3xl md:text-4xl leading-tight text-moss mb-5">
-              Trois pièces.
+              {ins.row2.title1}
               <br />
-              Un démontage en deux secondes.
+              {ins.row2.title2}
             </h3>
             <p className="text-mute text-base md:text-lg leading-relaxed max-w-md">
-              Le corps, la bague et la couronne de picots se séparent d&apos;un
-              quart de tour. Tout passe au lave-vaisselle sans se déformer.
-              Aucun recoin oublié, aucune mauvaise odeur — votre gobelet reste
-              impeccable, lavage après lavage.
+              {ins.row2.body}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {[
-                "Lave-vaisselle",
-                "Sans recoins cachés",
-                "Pièces interchangeables",
-              ].map((t) => (
+              {ins.row2.tags.map((tag) => (
                 <span
-                  key={t}
+                  key={tag}
                   className="text-[10px] tracking-[0.25em] uppercase text-moss bg-white border border-edge rounded-full px-3 py-1.5"
                 >
-                  {t}
+                  {tag}
                 </span>
               ))}
             </div>
@@ -123,7 +118,7 @@ export default function InsideLook() {
           <div className="relative rounded-[2rem] overflow-hidden card-bloom bg-white lg:order-2 order-1">
             <img
               src={IMG_PARTS}
-              alt="Le gobelet PawClean démonté — le corps transparent, la bague blanche et la couronne de picots silicone"
+              alt={ins.row2.imgAlt}
               loading="lazy"
               decoding="async"
               className="w-full h-auto block"
@@ -132,7 +127,7 @@ export default function InsideLook() {
           </div>
         </motion.div>
 
-        {/* Row 3 — Usage in real life (the 6-panel mosaic from the brand) */}
+        {/* Row 3 */}
         <motion.div
           variants={fade}
           initial="hidden"
@@ -142,22 +137,19 @@ export default function InsideLook() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8 md:mb-10">
             <div>
               <p className="text-xs tracking-[0.3em] uppercase text-mute mb-4">
-                En situation
+                {ins.row3.overline}
               </p>
               <h3 className="font-display text-3xl md:text-4xl leading-tight text-moss">
-                Quatre gestes. Dix secondes.{" "}
-                <em className="text-terracotta">Le tour est joué.</em>
+                {ins.row3.title1}{" "}
+                <em className="text-terracotta">{ins.row3.titleAccent}</em>
               </h3>
             </div>
-            <p className="text-sm text-mute max-w-sm">
-              Eau tiède, rotation douce, séchage à la serviette — et le tapis
-              d&apos;entrée vous remerciera.
-            </p>
+            <p className="text-sm text-mute max-w-sm">{ins.row3.body}</p>
           </div>
           <div className="relative rounded-[2rem] overflow-hidden card-bloom bg-white">
             <img
               src={IMG_USAGE}
-              alt="Démonstration en six étapes : remplir le gobelet, plonger la patte, sécher à la serviette, vider l'eau sale, et le résultat avant/après"
+              alt={ins.row3.imgAlt}
               loading="lazy"
               decoding="async"
               className="w-full h-auto block"

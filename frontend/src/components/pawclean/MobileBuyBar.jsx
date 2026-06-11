@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLang } from "@/lib/i18n";
 
-/**
- * Sticky mobile-only "buy" bar that slides up from the bottom once the user
- * has scrolled past the hero. Keeps the purchase action one tap away on phones.
- */
 export default function MobileBuyBar() {
+  const { t } = useLang();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
-      // Show once user has scrolled past ~70% of the first viewport.
       const trigger = window.innerHeight * 0.7;
       setVisible(window.scrollY > trigger);
     };
@@ -34,14 +31,14 @@ export default function MobileBuyBar() {
           <div className="m-3 rounded-2xl bg-forest text-linen shadow-[0_18px_36px_rgba(0,0,0,0.28)] px-4 py-3 flex items-center gap-3">
             <div className="flex-1 min-w-0">
               <p className="text-[10px] tracking-[0.25em] uppercase text-linen/70">
-                PawClean — silicone
+                {t.mobileBuy.overline}
               </p>
               <p className="text-sm leading-tight truncate">
-                À partir de{" "}
+                {t.mobileBuy.from}{" "}
                 <span className="font-display text-base text-terracotta">
                   18 €
                 </span>{" "}
-                · livraison offerte
+                {t.mobileBuy.shipping}
               </p>
             </div>
             <a
@@ -49,7 +46,7 @@ export default function MobileBuyBar() {
               data-testid="mobile-buy-cta"
               className="inline-flex items-center gap-2 rounded-full bg-terracotta text-linen px-5 py-2.5 text-sm font-medium whitespace-nowrap"
             >
-              Acheter
+              {t.mobileBuy.cta}
               <span>→</span>
             </a>
           </div>

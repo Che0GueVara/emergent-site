@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Star, BadgeCheck } from "lucide-react";
 import { REVIEWS } from "@/lib/pawclean-data";
+import { useLang } from "@/lib/i18n";
 
 function Stars({ n = 5 }) {
   return (
@@ -17,6 +18,17 @@ function Stars({ n = 5 }) {
 }
 
 export default function Reviews() {
+  const { t } = useLang();
+  const reviewItems = t.reviewItems;
+
+  // Merge static reviewer info (name, flag, photo, rating) with translated text
+  const merged = REVIEWS.map((r, i) => ({
+    ...r,
+    body: reviewItems[i]?.body ?? r.body,
+    city: reviewItems[i]?.city ?? r.city,
+    pet: reviewItems[i]?.pet ?? r.pet,
+  }));
+
   return (
     <section
       id="reviews"
@@ -27,12 +39,12 @@ export default function Reviews() {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16">
           <div className="max-w-2xl">
             <p className="text-xs tracking-[0.3em] uppercase text-mute mb-6">
-              4 200 avis vérifiés
+              {t.reviews.overline}
             </p>
             <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight text-moss">
-              Ce qu&apos;en disent
+              {t.reviews.headline1}
               <br />
-              <em className="text-terracotta">leurs maîtres.</em>
+              <em className="text-terracotta">{t.reviews.headline2}</em>
             </h2>
           </div>
           <div className="flex items-center gap-4">
@@ -41,13 +53,13 @@ export default function Reviews() {
             </div>
             <div>
               <Stars n={5} />
-              <p className="text-xs text-mute mt-1">sur 5 — moyenne France</p>
+              <p className="text-xs text-mute mt-1">{t.reviews.average}</p>
             </div>
           </div>
         </div>
 
         <div className="columns-1 md:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
-          {REVIEWS.map((r, i) => (
+          {merged.map((r, i) => (
             <motion.article
               key={r.name}
               initial={{ opacity: 0, y: 40 }}
@@ -65,9 +77,9 @@ export default function Reviews() {
                 <Stars n={r.rating} />
                 <span
                   className="inline-flex items-center gap-1 text-[10px] tracking-[0.25em] uppercase text-forest"
-                  title="Avis vérifié"
+                  title={t.reviews.verified}
                 >
-                  <BadgeCheck size={14} /> Vérifié
+                  <BadgeCheck size={14} /> {t.reviews.verified}
                 </span>
               </div>
               <p className="font-display text-lg md:text-xl text-moss leading-snug mb-6">

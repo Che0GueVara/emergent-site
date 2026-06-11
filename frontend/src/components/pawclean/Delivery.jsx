@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useLang } from "@/lib/i18n";
 
 function CountUp({ to, suffix = "", duration = 1.4 }) {
   const ref = useRef(null);
@@ -12,7 +13,6 @@ function CountUp({ to, suffix = "", duration = 1.4 }) {
     const step = (t) => {
       if (!start) start = t;
       const p = Math.min(1, (t - start) / (duration * 1000));
-      // ease out expo
       const eased = 1 - Math.pow(1 - p, 4);
       setVal(Math.round(eased * to));
       if (p < 1) requestAnimationFrame(step);
@@ -27,28 +27,12 @@ function CountUp({ to, suffix = "", duration = 1.4 }) {
   );
 }
 
-const stats = [
-  {
-    n: 0,
-    suffix: "€",
-    label: "Livraison gratuite",
-    body: "Partout en France métropolitaine, sans condition de montant.",
-  },
-  {
-    n: 10,
-    suffix: " j",
-    label: "Délai moyen",
-    body: "6 à 10 jours ouvrés, avec suivi e-mail à chaque étape.",
-  },
-  {
-    n: 30,
-    suffix: " j",
-    label: "Retour offert",
-    body: "Satisfait ou remboursé, sans justification, pendant 30 jours.",
-  },
-];
+const STAT_VALUES = [0, 10, 30];
 
 export default function Delivery() {
+  const { t } = useLang();
+  const stats = t.delivery.stats;
+
   return (
     <section
       id="delivery"
@@ -67,18 +51,18 @@ export default function Delivery() {
         />
         <div className="relative">
           <p className="text-xs tracking-[0.3em] uppercase text-linen/70 mb-6">
-            Promesse PawClean
+            {t.delivery.overline}
           </p>
           <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight max-w-2xl">
-            Commandé aujourd&apos;hui.
+            {t.delivery.headline1}
             <br />
-            <em className="text-terracotta">Adopté la semaine prochaine.</em>
+            <em className="text-terracotta">{t.delivery.headline2}</em>
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16 mt-20">
             {stats.map((s, i) => (
               <motion.div
-                key={s.label}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
@@ -90,7 +74,7 @@ export default function Delivery() {
                 data-testid={`delivery-stat-${i}`}
               >
                 <p className="font-display text-6xl md:text-7xl text-terracotta leading-none mb-5">
-                  <CountUp to={s.n} suffix={s.suffix} />
+                  <CountUp to={STAT_VALUES[i]} suffix={s.suffix} />
                 </p>
                 <p className="text-lg md:text-xl text-linen mb-2">{s.label}</p>
                 <p className="text-sm text-linen/65 max-w-xs leading-relaxed">

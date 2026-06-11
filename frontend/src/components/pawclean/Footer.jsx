@@ -1,4 +1,8 @@
+import { useLang } from "@/lib/i18n";
+
 export default function Footer() {
+  const { t } = useLang();
+
   return (
     <footer
       data-testid="section-footer"
@@ -13,29 +17,27 @@ export default function Footer() {
           Paw<span className="italic text-terracotta">Clean</span>
         </a>
         <p className="mt-4 text-sm text-mute max-w-md mx-auto">
-          La routine de la balade, simplifiée. Conçu à Paris, fabriqué en
-          Europe.
+          {t.footer.tagline}
         </p>
 
         <nav className="mt-10 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs tracking-[0.25em] uppercase text-mute">
           <a href="#" className="hover:text-forest transition-colors">
-            Mentions légales
+            {t.footer.legal}
           </a>
           <a href="#" className="hover:text-forest transition-colors">
-            CGV
+            {t.footer.cgv}
           </a>
           <a href="#" className="hover:text-forest transition-colors">
-            Confidentialité
+            {t.footer.privacy}
           </a>
           <a href="#" className="hover:text-forest transition-colors">
-            Cookies
+            {t.footer.cookies}
           </a>
           <a href="#" className="hover:text-forest transition-colors">
-            Contact
+            {t.footer.contact}
           </a>
         </nav>
 
-        {/* Payment icons */}
         <div
           className="mt-12 flex items-center justify-center gap-4 flex-wrap"
           data-testid="payment-icons"
@@ -51,7 +53,7 @@ export default function Footer() {
         </div>
 
         <p className="mt-12 text-xs text-mute">
-          © {new Date().getFullYear()} PawClean SAS — Tous droits réservés.
+          © {new Date().getFullYear()} PawClean SAS — {t.footer.copyright}
         </p>
       </div>
     </footer>

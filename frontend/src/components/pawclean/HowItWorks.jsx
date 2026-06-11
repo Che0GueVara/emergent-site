@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { STEPS } from "@/lib/pawclean-data";
+import { useLang } from "@/lib/i18n";
 
 const reveal = {
   hidden: { opacity: 0, y: 30 },
@@ -15,6 +15,9 @@ const reveal = {
 };
 
 export default function HowItWorks() {
+  const { t } = useLang();
+  const steps = t.steps;
+
   return (
     <section
       id="how"
@@ -24,19 +27,19 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="max-w-2xl mb-10 md:mb-14">
           <p className="text-xs tracking-[0.3em] uppercase text-mute mb-6">
-            Le rituel
+            {t.how.overline}
           </p>
           <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight text-moss">
-            Trois gestes. <em className="text-terracotta">Aucun produit.</em>
+            {t.how.headline1} <em className="text-terracotta">{t.how.headline2}</em>
             <br />
-            Une patte impeccable.
+            {t.how.headline3}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-10">
-          {STEPS.map((s, i) => (
+          {steps.map((s, i) => (
             <motion.div
-              key={s.n}
+              key={i}
               custom={i}
               variants={reveal}
               initial="hidden"
@@ -47,7 +50,7 @@ export default function HowItWorks() {
             >
               <div className="flex items-baseline gap-6 mb-6">
                 <span className="font-display text-7xl text-terracotta leading-none">
-                  {s.n}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="h-px flex-1 bg-edge mt-auto mb-3" />
               </div>

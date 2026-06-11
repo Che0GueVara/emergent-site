@@ -5,9 +5,12 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Plus } from "lucide-react";
-import { FAQ } from "@/lib/pawclean-data";
+import { useLang } from "@/lib/i18n";
 
 export default function FAQSection() {
+  const { t } = useLang();
+  const faqItems = t.faqItems;
+
   return (
     <section
       id="faq"
@@ -17,15 +20,15 @@ export default function FAQSection() {
       <div className="max-w-3xl mx-auto px-6 md:px-12">
         <div className="mb-16">
           <p className="text-xs tracking-[0.3em] uppercase text-mute mb-6">
-            Questions fréquentes
+            {t.faq.overline}
           </p>
           <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-tight text-moss">
-            Tout ce qu&apos;il faut <em className="text-terracotta">savoir</em>.
+            {t.faq.headline1} <em className="text-terracotta">{t.faq.headlineAccent}</em>{t.faq.headline2}
           </h2>
         </div>
 
         <Accordion type="single" collapsible className="w-full">
-          {FAQ.map((item, i) => (
+          {faqItems.map((item, i) => (
             <AccordionItem
               key={i}
               value={`item-${i}`}
