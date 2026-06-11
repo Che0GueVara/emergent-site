@@ -40,6 +40,7 @@ export const COLORS = [
     hex: "#3F6B58",
     light: "#A1B29E",
     bloom: "bloom-green",
+    image: "/products/sage.png",
   },
   {
     id: "sky",
@@ -47,6 +48,7 @@ export const COLORS = [
     hex: "#7794A8",
     light: "#A5B8C7",
     bloom: "bloom-blue",
+    image: "/products/sky.png",
   },
   {
     id: "terracotta",
@@ -54,6 +56,7 @@ export const COLORS = [
     hex: "#C9644B",
     light: "#E8A287",
     bloom: "bloom-terracotta",
+    image: "/products/terracotta.png",
   },
 ];
 

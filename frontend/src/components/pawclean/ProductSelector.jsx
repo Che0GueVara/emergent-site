@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { SIZES, COLORS, STRIPE_LINKS } from "@/lib/pawclean-data";
-import ProductCup from "@/components/pawclean/ProductCup";
+import ProductPhoto from "@/components/pawclean/ProductPhoto";
 import MagneticButton from "@/components/pawclean/MagneticButton";
 
 /** Dog silhouette — single path, scales between sizes */
@@ -46,7 +46,7 @@ export default function ProductSelector() {
           {/* Gallery */}
           <div className="relative lg:sticky lg:top-24">
             <div className="relative aspect-square rounded-[2.5rem] bg-gradient-to-br from-white to-[#EFEBE3] overflow-hidden card-bloom">
-              <div className="absolute inset-0 flex items-center justify-center">
+              <div className="absolute inset-0 flex items-center justify-center p-8">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`${color.id}-${size.id}`}
@@ -54,13 +54,11 @@ export default function ProductSelector() {
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     exit={{ opacity: 0, scale: 0.95, rotate: 4 }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className={color.bloom}
                   >
-                    <ProductCup
-                      tone={color.hex}
-                      toneLight={color.light}
+                    <ProductPhoto
+                      color={color}
                       size={
-                        size.id === "S" ? 280 : size.id === "M" ? 330 : 380
+                        size.id === "S" ? 320 : size.id === "M" ? 380 : 440
                       }
                     />
                   </motion.div>

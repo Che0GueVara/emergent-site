@@ -81,6 +81,24 @@ body {
     drop-shadow(0 10px 20px rgba(201, 100, 75, 0.3));
 }
 
+/* Background removal via blend modes for product photos */
+/* Black-background PNG: lighten blend on a dark stage makes the black disappear */
+.product-img-dark {
+  mix-blend-mode: lighten;
+}
+/* White-background JPG: multiply blend makes white disappear on lighter surfaces */
+.product-img-light {
+  mix-blend-mode: multiply;
+}
+
+/* Soft circular vignette stage used behind each floating product (subtle bloom) */
+.product-stage-vignette {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
 /* Soft micro-bloom (cards) */
 .card-bloom {
   box-shadow:

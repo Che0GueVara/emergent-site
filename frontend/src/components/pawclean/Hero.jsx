@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { COLORS } from "@/lib/pawclean-data";
-import ProductCup from "@/components/pawclean/ProductCup";
+import ProductPhoto from "@/components/pawclean/ProductPhoto";
 import MagneticButton from "@/components/pawclean/MagneticButton";
 import { ArrowDown } from "lucide-react";
 
@@ -20,16 +20,15 @@ export default function Hero() {
     target: ref,
     offset: ["start start", "end start"],
   });
-  const textY = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const cupY = useTransform(scrollYProgress, [0, 1], [0, -160]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.2]);
+  const textY = useTransform(scrollYProgress, [0, 1], [0, -60]);
+  const cupY = useTransform(scrollYProgress, [0, 1], [0, -140]);
 
   return (
     <section
       ref={ref}
       id="hero"
       data-testid="section-hero"
-      className="relative w-full min-h-[100svh] overflow-hidden hero-wash"
+      className="relative w-full min-h-[100svh] overflow-hidden hero-wash flex flex-col"
     >
       <div className="grain" />
 
@@ -68,90 +67,62 @@ export default function Hero() {
         </div>
       </header>
 
-      {/* Floating products */}
+      {/* TOP — Floating products carousel */}
       <motion.div
-        style={{ y: cupY, opacity }}
-        className="absolute inset-0 z-0 flex items-center justify-center"
+        style={{ y: cupY }}
+        className="relative z-10 pt-28 md:pt-32 flex items-end justify-center"
         aria-hidden
       >
-        <div className="relative w-full max-w-5xl aspect-[16/9]">
-          {/* Sky — back left */}
+        <div className="relative flex items-end justify-center gap-4 md:gap-10 lg:gap-16 w-full max-w-5xl px-6">
+          {/* Sky */}
           <motion.div
-            animate={{ y: [0, -18, 0], rotate: [-4, -2, -4] }}
-            transition={{
-              duration: 9,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute left-[6%] top-[28%] bloom-blue"
-            style={{ filter: undefined }}
+            animate={{ y: [0, -14, 0], rotate: [-3, -1, -3] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
+            className="translate-y-4"
           >
-            <ProductCup
-              tone={COLORS[1].hex}
-              toneLight={COLORS[1].light}
-              size={200}
-              className="bloom-blue"
-            />
+            <ProductPhoto color={COLORS[1]} size={180} priority />
           </motion.div>
 
-          {/* Sage — center front */}
+          {/* Sage — hero front */}
           <motion.div
-            animate={{ y: [0, -24, 0], rotate: [2, -2, 2] }}
-            transition={{
-              duration: 11,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute left-1/2 -translate-x-1/2 top-[24%]"
+            animate={{ y: [0, -22, 0], rotate: [1.5, -1.5, 1.5] }}
+            transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+            className="-translate-y-2 z-10"
           >
-            <ProductCup
-              tone={COLORS[0].hex}
-              toneLight={COLORS[0].light}
-              size={300}
-              className="bloom-green"
-            />
+            <ProductPhoto color={COLORS[0]} size={240} priority />
           </motion.div>
 
-          {/* Terracotta — right */}
+          {/* Terracotta */}
           <motion.div
-            animate={{ y: [0, -16, 0], rotate: [3, 6, 3] }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="absolute right-[6%] top-[30%]"
+            animate={{ y: [0, -16, 0], rotate: [2.5, 5, 2.5] }}
+            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            className="translate-y-4"
           >
-            <ProductCup
-              tone={COLORS[2].hex}
-              toneLight={COLORS[2].light}
-              size={210}
-              className="bloom-terracotta"
-            />
+            <ProductPhoto color={COLORS[2]} size={180} priority />
           </motion.div>
         </div>
       </motion.div>
 
-      {/* Headline */}
+      {/* BOTTOM — Editorial headline + CTA */}
       <motion.div
         style={{ y: textY }}
-        className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 pt-44 md:pt-52 pb-32 text-center"
+        className="relative z-20 flex-1 flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6 pt-8 pb-28"
       >
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="text-xs tracking-[0.3em] uppercase text-mute mb-8"
+          className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-mute mb-6"
           data-testid="hero-overline"
         >
-          Pour chiens et chats — fabriqué en silicone
+          Pour chiens et chats — fabriqué en silicone alimentaire
         </motion.p>
         <h1
           data-testid="hero-headline"
-          className="font-display text-[clamp(2.8rem,8vw,7rem)] leading-[0.95] tracking-tight text-moss"
+          className="font-display text-[clamp(2.5rem,7vw,6.25rem)] leading-[0.95] tracking-tight text-moss"
         >
           <motion.span
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="block"
@@ -159,7 +130,7 @@ export default function Hero() {
             Des pattes propres
           </motion.span>
           <motion.span
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 36 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
             className="block italic"
@@ -169,20 +140,20 @@ export default function Hero() {
         </h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 text-base md:text-lg text-mute max-w-xl mx-auto"
+          className="mt-7 text-base md:text-lg text-mute max-w-xl"
         >
           La routine de la balade, simplifiée. Un gobelet en silicone, de
           l&apos;eau tiède, et la boue disparaît.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 flex flex-col items-center gap-5"
+          className="mt-10 flex flex-col items-center gap-4"
         >
           <MagneticButton
             href="#product"
@@ -207,7 +178,7 @@ export default function Hero() {
 
       {/* Trust ticker */}
       <div
-        className="absolute bottom-0 left-0 right-0 bg-forest text-linen py-3 overflow-hidden z-20"
+        className="relative left-0 right-0 bg-forest text-linen py-3 overflow-hidden z-20"
         data-testid="trust-ticker"
       >
         <div className="marquee-track">

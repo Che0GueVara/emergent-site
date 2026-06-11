@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 
+const BEFORE = "https://customer-assets.emergentagent.com/job_ten-seconds-clean/artifacts/lnp5y4nu_image.png";
+const AFTER = "https://customer-assets.emergentagent.com/job_ten-seconds-clean/artifacts/2yy6pict_image.png";
+
 export default function BeforeAfter() {
   return (
     <section
@@ -26,7 +29,7 @@ export default function BeforeAfter() {
         >
           {/* Before */}
           <div className="relative aspect-[4/5] md:aspect-[16/10] bg-cover bg-center"
-               style={{ backgroundImage: "url('https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=1200&auto=format&fit=crop')" }}>
+               style={{ backgroundImage: `url('${BEFORE}')` }}>
             <div className="absolute inset-0 bg-moss/15" />
             <span className="absolute top-5 left-5 text-[10px] tracking-[0.3em] uppercase text-linen bg-moss/70 backdrop-blur px-3 py-1.5 rounded-full">
               Avant — boue, sable, herbe
@@ -34,7 +37,7 @@ export default function BeforeAfter() {
           </div>
           {/* After */}
           <div className="relative aspect-[4/5] md:aspect-[16/10] bg-cover bg-center"
-               style={{ backgroundImage: "url('https://images.unsplash.com/photo-1517423440428-a5a00ad493e8?q=80&w=1200&auto=format&fit=crop')" }}>
+               style={{ backgroundImage: `url('${AFTER}')` }}>
             <div className="absolute inset-0 bg-linen/10" />
             <span className="absolute top-5 right-5 text-[10px] tracking-[0.3em] uppercase text-moss bg-linen/85 backdrop-blur px-3 py-1.5 rounded-full">
               Après — 10 secondes plus tard
