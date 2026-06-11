@@ -53,9 +53,9 @@ export default function Delivery() {
     <section
       id="delivery"
       data-testid="section-delivery"
-      className="relative px-4 md:px-12 py-12"
+      className="relative px-4 md:px-12 py-6"
     >
-      <div className="relative max-w-7xl mx-auto bg-forest text-linen rounded-[2.5rem] py-24 md:py-32 px-8 md:px-16 overflow-hidden">
+      <div className="relative max-w-7xl mx-auto bg-forest text-linen rounded-[2.5rem] py-16 md:py-24 px-8 md:px-16 overflow-hidden">
         <div
           aria-hidden
           className="absolute inset-0 opacity-[0.06]"

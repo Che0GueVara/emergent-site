@@ -70,35 +70,35 @@ export default function Hero() {
       {/* TOP — Floating products carousel */}
       <motion.div
         style={{ y: cupY }}
-        className="relative z-10 pt-28 md:pt-32 flex items-end justify-center"
+        className="relative z-10 pt-24 md:pt-28 flex items-end justify-center"
         aria-hidden
       >
-        <div className="relative flex items-end justify-center gap-4 md:gap-10 lg:gap-16 w-full max-w-5xl px-6">
+        <div className="relative flex items-end justify-center gap-2 md:gap-6 lg:gap-10 w-full max-w-6xl px-4">
           {/* Sky */}
           <motion.div
-            animate={{ y: [0, -14, 0], rotate: [-3, -1, -3] }}
+            animate={{ y: [0, -18, 0], rotate: [-3, -1, -3] }}
             transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-            className="translate-y-4"
+            className="translate-y-6"
           >
-            <ProductPhoto color={COLORS[1]} size={180} priority />
+            <ProductPhoto color={COLORS[1]} size={300} priority />
           </motion.div>
 
           {/* Sage — hero front */}
           <motion.div
-            animate={{ y: [0, -22, 0], rotate: [1.5, -1.5, 1.5] }}
+            animate={{ y: [0, -28, 0], rotate: [1.5, -1.5, 1.5] }}
             transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-            className="-translate-y-2 z-10"
+            className="-translate-y-4 z-10"
           >
-            <ProductPhoto color={COLORS[0]} size={240} priority />
+            <ProductPhoto color={COLORS[0]} size={420} priority />
           </motion.div>
 
           {/* Terracotta */}
           <motion.div
-            animate={{ y: [0, -16, 0], rotate: [2.5, 5, 2.5] }}
+            animate={{ y: [0, -20, 0], rotate: [2.5, 5, 2.5] }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-            className="translate-y-4"
+            className="translate-y-6"
           >
-            <ProductPhoto color={COLORS[2]} size={180} priority />
+            <ProductPhoto color={COLORS[2]} size={300} priority />
           </motion.div>
         </div>
       </motion.div>
@@ -106,7 +106,7 @@ export default function Hero() {
       {/* BOTTOM — Editorial headline + CTA */}
       <motion.div
         style={{ y: textY }}
-        className="relative z-20 flex-1 flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6 pt-8 pb-28"
+        className="relative z-20 flex-1 flex flex-col items-center justify-center text-center max-w-6xl mx-auto px-6 pt-2 pb-20"
       >
         <motion.p
           initial={{ opacity: 0, y: 14 }}

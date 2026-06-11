@@ -37,7 +37,7 @@ export default function ProductSelector() {
     <section
       id="product"
       data-testid="section-product"
-      className="relative py-32 md:py-44 bg-linen"
+      className="relative py-16 md:py-24 bg-linen"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div

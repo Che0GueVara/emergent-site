@@ -12,7 +12,7 @@ export default function FAQSection() {
     <section
       id="faq"
       data-testid="section-faq"
-      className="relative py-32 md:py-44 bg-linen"
+      className="relative py-16 md:py-24 bg-linen"
     >
       <div className="max-w-3xl mx-auto px-6 md:px-12">
         <div className="mb-16">

@@ -8,7 +8,7 @@ export default function BeforeAfter() {
     <section
       id="before-after"
       data-testid="section-before-after"
-      className="relative py-24 md:py-32 bg-linen"
+      className="relative py-16 md:py-24 bg-linen"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="max-w-2xl mb-16">

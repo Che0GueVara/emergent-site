@@ -9,7 +9,7 @@ export default function Features() {
     <section
       id="features"
       data-testid="section-features"
-      className="relative py-32 md:py-44 bg-linen"
+      className="relative py-16 md:py-24 bg-linen"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="max-w-2xl mb-16">

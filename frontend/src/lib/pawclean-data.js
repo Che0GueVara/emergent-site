@@ -22,7 +22,7 @@ export const SIZES = [
     label: "M",
     price: 21,
     breed: "Cocker, Border Collie, Bouledogue",
-    weight: "de 8 à 25 kg",
+    weight: "de 8 à 20 kg",
     dogScale: 0.82,
     icon: "/icons/m.png",
     dimensions: { width: "8,5 cm", height: "13,5 cm", opening: "7 cm" },
@@ -32,7 +32,7 @@ export const SIZES = [
     label: "L",
     price: 23,
     breed: "Labrador, Berger, Dogue Allemand",
-    weight: "à partir de 25 kg",
+    weight: "à partir de 20 kg",
     dogScale: 1.0,
     icon: "/icons/l.png",
     dimensions: { width: "8,5 cm", height: "15 cm", opening: "7 cm" },
@@ -169,7 +169,7 @@ export const REVIEWS = [
 export const FAQ = [
   {
     q: "Comment choisir la bonne taille ?",
-    a: "La taille S convient aux chiens et chats jusqu'à 8 kg. La taille M est idéale pour les races moyennes (8 à 25 kg). La taille L s'adresse aux grandes races à partir de 25 kg. En cas de doute, choisissez la taille supérieure — le gobelet s'adapte à la patte, pas l'inverse.",
+    a: "La taille S convient aux chiens et chats jusqu'à 8 kg. La taille M est idéale pour les races moyennes (8 à 20 kg). La taille L s'adresse aux grandes races à partir de 20 kg. En cas de doute, choisissez la taille supérieure — le gobelet s'adapte à la patte, pas l'inverse.",
   },
   {
     q: "Faut-il du savon ou un produit nettoyant ?",
