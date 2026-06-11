@@ -5,6 +5,12 @@ import { useLang } from "@/lib/i18n";
 import ProductPhoto from "@/components/pawclean/ProductPhoto";
 import MagneticButton from "@/components/pawclean/MagneticButton";
 
+const STRIPE_LINKS_USD = {
+  S: "https://buy.stripe.com/5kQ28j61kgWadMV289e7m05",
+  M: "https://buy.stripe.com/14A7sD2P85ds7oxbIJe7m04",
+  L: "https://buy.stripe.com/00w7sDexQbBQ9wFfYZe7m03",
+};
+
 function DogSilhouette({ src, scale = 1, active = false }) {
   return (
     <div
@@ -36,7 +42,8 @@ export default function ProductSelector() {
   const [size, setSize] = useState(SIZES[1]);
   const [color, setColor] = useState(COLORS[0]);
 
-  const stripeUrl = STRIPE_LINKS[size.id];
+  const isUSD = prod.currency === "$";
+  const stripeUrl = isUSD ? STRIPE_LINKS_USD[size.id] : STRIPE_LINKS[size.id];
 
   // Merge translated text with static data
   const sizes = SIZES.map((s, i) => ({
@@ -62,6 +69,22 @@ export default function ProductSelector() {
       className="relative pt-6 md:pt-10 pb-16 md:pb-24 bg-linen"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
+
+        {/* Headline — always on top, visible on all screen sizes */}
+        <div className="mb-10 md:mb-12">
+          <p className="text-xs tracking-[0.3em] uppercase text-mute mb-5">
+            {prod.overline}
+          </p>
+          <h2 className="font-display text-4xl md:text-5xl leading-[1.02] tracking-tight text-moss">
+            {prod.headline1}
+            <br />
+            <em className="text-terracotta">{prod.headline2}</em>
+          </h2>
+          <p className="mt-6 text-mute text-base md:text-lg max-w-md leading-relaxed">
+            {prod.body}
+          </p>
+        </div>
+
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -106,20 +129,8 @@ export default function ProductSelector() {
 
           {/* Configurator */}
           <div>
-            <p className="text-xs tracking-[0.3em] uppercase text-mute mb-5">
-              {prod.overline}
-            </p>
-            <h2 className="font-display text-4xl md:text-5xl leading-[1.02] tracking-tight text-moss">
-              {prod.headline1}
-              <br />
-              <em className="text-terracotta">{prod.headline2}</em>
-            </h2>
-            <p className="mt-6 text-mute text-base md:text-lg max-w-md leading-relaxed">
-              {prod.body}
-            </p>
-
             {/* Color swatches */}
-            <div className="mt-12">
+            <div>
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs tracking-[0.25em] uppercase text-mute">
                   {prod.colorLabel}
@@ -175,9 +186,7 @@ export default function ProductSelector() {
                     >
                       <span
                         className={`absolute top-2 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border ${
-                          active
-                            ? "border-moss/60 bg-linen/60"
-                            : "border-edge bg-linen"
+                          active ? "border-moss/60 bg-linen/60" : "border-edge bg-linen"
                         }`}
                       />
                       <span
@@ -186,11 +195,7 @@ export default function ProductSelector() {
                         }`}
                       />
                       <div className="flex-1 flex items-end justify-center mb-1">
-                        <DogSilhouette
-                          src={s.icon}
-                          scale={s.dogScale}
-                          active={active}
-                        />
+                        <DogSilhouette src={s.icon} scale={s.dogScale} active={active} />
                       </div>
                       <div className="flex items-baseline gap-1">
                         <span className="font-display text-2xl text-moss leading-none">
@@ -223,9 +228,7 @@ export default function ProductSelector() {
                 <div
                   key={s.testId}
                   data-testid={s.testId}
-                  className={`px-4 md:px-6 py-5 text-center ${
-                    i < 2 ? "border-r border-edge" : ""
-                  }`}
+                  className={`px-4 md:px-6 py-5 text-center ${i < 2 ? "border-r border-edge" : ""}`}
                 >
                   <p className="text-[10px] tracking-[0.25em] uppercase text-mute mb-2">
                     {specLabels[s.labelKey]}
@@ -265,9 +268,9 @@ export default function ProductSelector() {
                     data-testid="product-price"
                     className="font-display text-5xl md:text-6xl text-moss leading-none"
                   >
-                    {prod.currency === "$" && <span className="text-terracotta">$</span>}
+                    {isUSD && <span className="text-terracotta">$</span>}
                     {prod.prices ? prod.prices[size.id] : size.price}
-                    {prod.currency === "€" && <span className="text-terracotta">€</span>}
+                    {!isUSD && <span className="text-terracotta">€</span>}
                   </motion.p>
                 </AnimatePresence>
               </div>
