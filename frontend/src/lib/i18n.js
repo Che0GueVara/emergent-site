@@ -286,7 +286,7 @@ export const translations = {
       priceLabel: "Unit price · free shipping",
       buyCta: "Buy this model",
       currency: "$",
-      prices: { S: 20, M: 23, L: 25 },
+      prices: { S: 13, M: 19, L: 21 },
     },
     // InsideLook
     inside: {
@@ -372,7 +372,7 @@ export const translations = {
     // MobileBuyBar
     mobileBuy: {
       overline: "PawClean — silicone",
-      from: "From $20",
+      from: "From $13",
       shipping: "· free shipping",
       cta: "Buy",
     },
