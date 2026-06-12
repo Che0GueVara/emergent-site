@@ -6,9 +6,9 @@ import ProductPhoto from "@/components/pawclean/ProductPhoto";
 import MagneticButton from "@/components/pawclean/MagneticButton";
 
 const STRIPE_LINKS_USD = {
-  S: "https://buy.stripe.com/5kQ28j61kgWadMV289e7m05",
-  M: "https://buy.stripe.com/14A7sD2P85ds7oxbIJe7m04",
-  L: "https://buy.stripe.com/00w7sDexQbBQ9wFfYZe7m03",
+  S: "https://buy.stripe.com/fZuaEPahA21g109cMNe7m06",
+  M: "https://buy.stripe.com/14AcMX9dweO2aAJ289e7m07",
+  L: "https://buy.stripe.com/14A9ALdtM0XceQZ289e7m08",
 };
 
 function DogSilhouette({ src, scale = 1, active = false }) {
