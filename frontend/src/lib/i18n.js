@@ -286,7 +286,7 @@ export const translations = {
       priceLabel: "Unit price · free shipping",
       buyCta: "Buy this model",
       currency: "$",
-      prices: { S: 13, M: 19, L: 21 },
+      prices: { S: 13, M: 15, L: 17 },
     },
     // InsideLook
     inside: {
